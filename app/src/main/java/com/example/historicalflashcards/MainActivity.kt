@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
                         Text(text = "An app designed to test your knowledge about")
                         Text(text = "some historical facts in the form of Flashcards.")
                         Text(text = "Press the 'Next' Button to begin")
-                        
+
                         
                         Spacer(modifier = Modifier.size(30.dp))
 
