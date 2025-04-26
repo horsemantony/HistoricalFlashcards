@@ -50,6 +50,10 @@ class Flashcards : ComponentActivity() {
                         "Apartheid was a system established to segregate black, coloured and indian people to give power to white people")
                     val answers = arrayOf("False", "True","True","False","True")
                     var score = 0
+                    var questionDisplay by remember {
+                        mutableStateOf("")
+                    }
+                    var index = 0
 
                     Column(
                         modifier = Modifier.fillMaxSize(),
@@ -64,7 +68,10 @@ class Flashcards : ComponentActivity() {
 
                         Spacer(modifier = Modifier.size(30.dp))
 
-                        Text(text = questions[0])
+                        questionDisplay= questions[index]
+                        Text(text = questionDisplay)
+
+
 
                         Row {
                             Button(
@@ -102,8 +109,14 @@ class Flashcards : ComponentActivity() {
 
                             Button(
                                 onClick = {
-                                    for (list in questions)
-                                        print(list)
+                                    val nextQuestion ={
+                                        index++
+                                        if (index < questions.size )
+                                            questionDisplay =questions[index]
+                                        else
+                                            "No More Questions"
+                                    }
+                                    nextQuestion
 
 
                                 }) {
