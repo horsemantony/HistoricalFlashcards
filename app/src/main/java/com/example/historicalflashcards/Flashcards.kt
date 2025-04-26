@@ -68,9 +68,8 @@ class Flashcards : ComponentActivity() {
 
                         Spacer(modifier = Modifier.size(30.dp))
 
-                        questionDisplay= questions[index]
+                        //questionDisplay= questions[index]
                         Text(text = questionDisplay)
-
 
 
                         Row {
@@ -109,14 +108,12 @@ class Flashcards : ComponentActivity() {
 
                             Button(
                                 onClick = {
-                                    val nextQuestion ={
+                                    if (index < questions.size -1){
                                         index++
-                                        if (index < questions.size )
-                                            questionDisplay =questions[index]
-                                        else
-                                            "No More Questions"
-                                    }
-                                    nextQuestion
+                                        questionDisplay = questions[index]
+                                    }else
+                                        questionDisplay = "No more questions"
+
 
 
                                 }) {
