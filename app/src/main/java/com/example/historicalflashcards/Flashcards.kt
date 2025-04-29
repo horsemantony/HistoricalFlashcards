@@ -38,17 +38,21 @@ class Flashcards : ComponentActivity() {
         val questions = arrayOf("Nelson Mandela was the first president of South Africa",
             "South Africa was the first country to voluntarily give up its nuclear weapons",
             "The earliest known people in South Africa were the San and Khoikhoi people, also known as the Khoisan",
-            "South Africa adopted its flag in 1949",
+            "South Africa adopted its current flag in 1949",
             "Apartheid was a system established to segregate black, coloured and indian people to give power to white people")
 
         val answers = arrayOf("False", "True","True","False","True")
-
         var score = 0
         var index = 0
+        
+        
         super.onCreate(savedInstanceState)
         setContent {
             var questionDisplay by remember {
                 mutableStateOf(questions[0])
+            }
+            var feedback by remember{
+                mutableStateOf("")
             }
             HistoricalFlashcardsTheme {
                 // A surface container using the 'background' color from the theme
@@ -69,21 +73,35 @@ class Flashcards : ComponentActivity() {
 
                         Spacer(modifier = Modifier.size(30.dp))
 
-                        //questionDisplay= questions[index]
                         Text(text = questionDisplay)
-
+                        Spacer(modifier = Modifier.size(30.dp))
+                        Text(text = feedback)
+                        Spacer(modifier = Modifier.size(30.dp))
 
                         Row {
                             Button(
                                 onClick = {
-
+                                    feedback = if (answers[index] == "True"){
+                                        score++
+                                        "Correct"
+                                    }else{
+                                        "Incorrect"
+                                    }
 
                                 }) {
                                 Text(text = "True")
                             }
 
+                            Spacer(modifier = Modifier.size(30.dp))
+
                             Button(
                                 onClick = {
+                                    feedback = if (answers[index] == "False"){
+                                        score++
+                                        "Correct"
+                                    }else{
+                                        "Incorrect"
+                                    }
 
                                 }
 
@@ -95,43 +113,26 @@ class Flashcards : ComponentActivity() {
                         Spacer(modifier = Modifier.size(30.dp))
 
                         Row {
-                            Button(
-                                onClick = {
-
-                                    //this takes you back to the MainActivity screen
-                                    val back = Intent(this@Flashcards,MainActivity::class.java)
-
-                                    startActivity(back)
-
-                                }) {
-                                Text(text = "Back")
-                            }
 
                             //Next Button
                             Button(
                                 onClick = {
                                     if (index < questions.size -1){
                                         index += 1
-                                        score +=1
                                         questionDisplay = questions[index] + " - " + index + " - " + questions.size
                                     }else {
                                         val next = Intent(this@Flashcards,ScoreScreen::class.java)
                                         next.putExtra("score", score)
                                         startActivity(next)
                                     }
-
-
-
+                                    feedback= ""
                                 }) {
                                 Text(text = "Next")
                             }
                         }
-
+                        Spacer(modifier = Modifier.size(30.dp))
                         Text(text = "Score: $score/5")
-
-
                     }
-
                 }
             }
         }

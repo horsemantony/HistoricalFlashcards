@@ -2,4 +2,5 @@
     <string name="app_name">Historical Flashcards</string>
     <string name="title_activity_flashcards">Flashcards</string>
     <string name="title_activity_score_screen">ScoreScreen</string>
+    <string name="title_activity_review">Review</string>
 </resources>

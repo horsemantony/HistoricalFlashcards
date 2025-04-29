@@ -22,8 +22,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.historicalflashcards.ui.theme.HistoricalFlashcardsTheme
 
-class MainActivity : ComponentActivity() {
+class Review : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val questions = arrayOf("Nelson Mandela was the first president of South Africa",
+            "South Africa was the first country to voluntarily give up its nuclear weapons",
+            "The earliest known people in South Africa were the San and Khoikhoi people, also known as the Khoisan",
+            "South Africa adopted its current flag in 1949",
+            "Apartheid was a system established to segregate black, coloured and indian people to give power to white people")
+
+        val answers = arrayOf("False", "True","True","False","True")
+
         super.onCreate(savedInstanceState)
         setContent {
             HistoricalFlashcardsTheme {
@@ -32,7 +40,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Unspecified
                 ) {
-
                     Column(
                         modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally)
@@ -44,35 +51,51 @@ class MainActivity : ComponentActivity() {
                             fontWeight = FontWeight.Black
                         )
                         Spacer(modifier = Modifier.size(30.dp))
-
-                        Text(text = "Welcome to Historical Flashcards!")
-                        
+                        Text(
+                            text = "Score",
+                            modifier = Modifier,
+                            fontSize = 20.sp,
+                        )
                         Spacer(modifier = Modifier.size(30.dp))
 
-                        Text(text = "An app designed to test your knowledge about")
-                        Text(text = "some historical facts in the form of Flashcards.")
-                        Text(text = "Press the 'Start' Button to begin")
+                        Text(text = "Question 1")
+                        Text(text = questions[0])
+                        Text(text = "   "+ answers[0])
+                        Spacer(modifier = Modifier.size(30.dp))
 
-                        
+                        Text(text = "Question 2")
+                        Text(text = questions[1])
+                        Text(text = "   "+ answers[1])
+                        Spacer(modifier = Modifier.size(30.dp))
+
+                        Text(text = "Question 3")
+                        Text(text = questions[2])
+                        Text(text = "   "+ answers[2])
+                        Spacer(modifier = Modifier.size(30.dp))
+
+                        Text(text = "Question 4")
+                        Text(text = questions[3])
+                        Text(text = "   "+ answers[3])
+                        Spacer(modifier = Modifier.size(30.dp))
+
+                        Text(text = "Question 5")
+                        Text(text = questions[4])
+                        Text(text = "   "+ answers[4])
                         Spacer(modifier = Modifier.size(30.dp))
 
                         Button(
                             onClick = {
-                                //this takes you to the SlashCards screen
-                                val next = Intent(this@MainActivity,Flashcards::class.java)
-                                startActivity(next)
+                                //this takes you back to the MainActivity screen
+                                val exit = Intent(this@Review,MainActivity::class.java)
+                                startActivity(exit)
 
                             }) {
-                            Text(text = "Start")
+                            Text(text = "Back")
                         }
-
-
-
                     }
-
-
                 }
             }
         }
     }
 }
+
