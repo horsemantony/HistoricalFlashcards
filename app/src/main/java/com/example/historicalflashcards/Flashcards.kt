@@ -34,26 +34,27 @@ import com.example.historicalflashcards.ui.theme.HistoricalFlashcardsTheme
 class Flashcards : ComponentActivity() {
     @SuppressLint("InvalidColorHexValue")
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val questions = arrayOf("Nelson Mandela was the first president of South Africa",
+            "South Africa was the first country to voluntarily give up its nuclear weapons",
+            "The earliest known people in South Africa were the San and Khoikhoi people, also known as the Khoisan",
+            "South Africa adopted its flag in 1949",
+            "Apartheid was a system established to segregate black, coloured and indian people to give power to white people")
+
+        val answers = arrayOf("False", "True","True","False","True")
+
+        var score = 0
+        var index = 0
         super.onCreate(savedInstanceState)
         setContent {
+            var questionDisplay by remember {
+                mutableStateOf(questions[0])
+            }
             HistoricalFlashcardsTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.Transparent)
-                {
-
-                    val questions = arrayOf("Nelson Mandela was the first president of South Africa",
-                        "South Africa was the first country to voluntarily give up its nuclear weapons",
-                        "The earliest known people in South Africa were the San and Khoikhoi people, also known as the Khoisan",
-                        "South Africa adopted its flag in 1949",
-                        "Apartheid was a system established to segregate black, coloured and indian people to give power to white people")
-                    val answers = arrayOf("False", "True","True","False","True")
-                    var score = 0
-                    var questionDisplay by remember {
-                        mutableStateOf("")
-                    }
-                    var index = 0
+                    color = Color.Transparent) {
 
                     Column(
                         modifier = Modifier.fillMaxSize(),
@@ -75,6 +76,8 @@ class Flashcards : ComponentActivity() {
                         Row {
                             Button(
                                 onClick = {
+
+
                                 }) {
                                 Text(text = "True")
                             }
@@ -82,11 +85,8 @@ class Flashcards : ComponentActivity() {
                             Button(
                                 onClick = {
 
-                                },
-                                /*modifier = Modifier,
-                                colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color(0xfffb0)
-                                 */
+                                }
+
                             ) {
                                 Text(text = "False")
                             }
@@ -100,19 +100,25 @@ class Flashcards : ComponentActivity() {
 
                                     //this takes you back to the MainActivity screen
                                     val back = Intent(this@Flashcards,MainActivity::class.java)
+
                                     startActivity(back)
 
                                 }) {
                                 Text(text = "Back")
                             }
 
+                            //Next Button
                             Button(
                                 onClick = {
                                     if (index < questions.size -1){
-                                        index++
-                                        questionDisplay = questions[index]
-                                    }else
-                                        questionDisplay = "No more questions"
+                                        index += 1
+                                        score +=1
+                                        questionDisplay = questions[index] + " - " + index + " - " + questions.size
+                                    }else {
+                                        val next = Intent(this@Flashcards,ScoreScreen::class.java)
+                                        next.putExtra("score", score)
+                                        startActivity(next)
+                                    }
 
 
 

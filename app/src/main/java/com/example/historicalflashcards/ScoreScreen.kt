@@ -1,6 +1,5 @@
 package com.example.historicalflashcards
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,8 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.historicalflashcards.ui.theme.HistoricalFlashcardsTheme
 
-class MainActivity : ComponentActivity() {
+class ScoreScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        var score =intent.getIntExtra("score", -1)
+
         super.onCreate(savedInstanceState)
         setContent {
             HistoricalFlashcardsTheme {
@@ -45,25 +47,14 @@ class MainActivity : ComponentActivity() {
                         )
                         Spacer(modifier = Modifier.size(30.dp))
 
-                        Text(text = "Welcome to Historical Flashcards!")
-                        
-                        Spacer(modifier = Modifier.size(30.dp))
-
-                        Text(text = "An app designed to test your knowledge about")
-                        Text(text = "some historical facts in the form of Flashcards.")
-                        Text(text = "Press the 'Next' Button to begin")
 
                         
-                        Spacer(modifier = Modifier.size(30.dp))
-
                         Button(
                             onClick = {
-                                //this takes you to the SlashCards screen
-                                val next = Intent(this@MainActivity,Flashcards::class.java)
-                                startActivity(next)
+                            /*TODO*/
+                            })
+                        {
 
-                            }) {
-                            Text(text = "Start")
                         }
 
 
