@@ -90,7 +90,7 @@ class Review : ComponentActivity() {
                                 startActivity(exit)
 
                             }) {
-                            Text(text = "Back")
+                            Text(text = "Exit")
                         }
                     }
                 }
