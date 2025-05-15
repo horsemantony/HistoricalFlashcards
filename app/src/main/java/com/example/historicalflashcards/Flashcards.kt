@@ -58,7 +58,8 @@ class Flashcards : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.Transparent) {
+                    color = Color(0xFFEFB069)
+                ){
 
                     Column(
                         modifier = Modifier.fillMaxSize(),
@@ -119,7 +120,7 @@ class Flashcards : ComponentActivity() {
                                 onClick = {
                                     if (index < questions.size -1){
                                         index += 1
-                                        questionDisplay = questions[index] + " - " + index + " - " + questions.size
+                                        questionDisplay = questions[index]
                                     }else {
                                         val next = Intent(this@Flashcards,ScoreScreen::class.java)
                                         next.putExtra("score", score)

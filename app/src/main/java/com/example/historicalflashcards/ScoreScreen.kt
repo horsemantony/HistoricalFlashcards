@@ -40,7 +40,7 @@ class ScoreScreen : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.Unspecified
+                    color = Color(0xFFEFB069)
                 ) {
 
                     Column(
@@ -96,13 +96,14 @@ class ScoreScreen : ComponentActivity() {
 
                         Spacer(modifier = Modifier.size(30.dp))
 
-                        Text(text = "Press the button below to review your answers")
+                        Text(text = "Press the button below to review the correct answers")
 
                         Spacer(modifier = Modifier.size(30.dp))
 
                         Button(
                             onClick = {
                                 val next = Intent(this@ScoreScreen,Review::class.java)
+                                next.putExtra("score", score)
                                 startActivity(next)
                             })
                         {

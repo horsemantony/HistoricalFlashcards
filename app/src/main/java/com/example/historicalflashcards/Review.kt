@@ -31,6 +31,7 @@ class Review : ComponentActivity() {
             "Apartheid was a system established to segregate black, coloured and indian people to give power to white people")
 
         val answers = arrayOf("False", "True","True","False","True")
+        var score =intent.getIntExtra("score", 0)
 
         super.onCreate(savedInstanceState)
         setContent {
@@ -38,7 +39,7 @@ class Review : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.Unspecified
+                    color = Color(0xFFEFB069)
                 ) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
@@ -52,9 +53,10 @@ class Review : ComponentActivity() {
                         )
                         Spacer(modifier = Modifier.size(30.dp))
                         Text(
-                            text = "Score",
+                            text = "Score: $score/5",
                             modifier = Modifier,
-                            fontSize = 20.sp,
+                            fontSize = 25.sp,
+                            fontWeight = FontWeight.W100
                         )
                         Spacer(modifier = Modifier.size(30.dp))
 
@@ -85,12 +87,9 @@ class Review : ComponentActivity() {
 
                         Button(
                             onClick = {
-                                //this takes you back to the MainActivity screen
-                                val exit = Intent(this@Review,MainActivity::class.java)
-                                startActivity(exit)
-
+                               finishAffinity()
                             }) {
-                            Text(text = "Exit")
+                            Text(text = "Close App")
                         }
                     }
                 }

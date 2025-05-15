@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.Unspecified
+                    color = Color(0xFFEFB069)
                 ) {
 
                     Column(
